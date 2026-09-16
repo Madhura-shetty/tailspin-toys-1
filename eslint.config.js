@@ -27,6 +27,7 @@ export default [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      "@typescript-eslint/explicit-module-boundary-types": "error",
     },
   },
 
@@ -38,6 +39,18 @@ export default [
     files: ["**/*.ts"],
     languageOptions: {
       parser: tseslint.parser,
+    },
+  },
+
+  // Keep formatting consistent in application TypeScript without imposing
+  // the convention on generated or independently maintained configuration.
+  {
+    files: ["db/**/*.ts", "src/**/*.ts"],
+    rules: {
+      quotes: ["error", "single", { avoidEscape: true }],
+      semi: ["error", "always"],
+      "comma-dangle": ["error", "always-multiline"],
+      "object-curly-spacing": ["error", "always"],
     },
   },
 ];
